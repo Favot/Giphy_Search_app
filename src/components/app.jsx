@@ -11,8 +11,7 @@ class App extends Component {
 
     this.state = {
       gifs: [],
-      selectedGifId:
-        "https://media1.giphy.com/media/JHLXLgxbxyN5osy81d/200.gif",
+      selectedGifId: null,
     };
     this.search();
   }
@@ -22,7 +21,7 @@ class App extends Component {
       {
         q: query,
         rating: "g",
-        limit: 10,
+        limit: 15,
       },
       (err, result) => {
         this.setState({ gifs: result.data });
@@ -30,7 +29,7 @@ class App extends Component {
     );
   };
 
-  updateMainGif = (result) => {
+  selecGif = (result) => {
     this.setState({ selectedGifId: result });
   };
 
@@ -45,7 +44,7 @@ class App extends Component {
           </div>
         </div>
         <div className="right-scene">
-          <GifList gifs={gifs} updateMainGifFunction={this.updateMainGif} />
+          <GifList gifs={gifs} selecGif={this.selecGif} />
         </div>
       </div>
     );
